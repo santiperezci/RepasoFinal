@@ -1,0 +1,36 @@
+type Query{
+    ok: String!
+    listarEntradas(email:String!,aut:Int!,token:ID!):[Entrada!]
+    leerEntrada(email:String!,aut:Int!,autor:String!,token:ID!):[Entrada!]
+    leerEntradaEspecifica(email:String!,aut:Int!,_id:ID!,token:ID!):Entrada!
+}
+type Mutation{
+    addUser(email:String!,aut:Int!,contrasena:String!):Usuario
+    login(email:String!,aut:Int!,contrasena:String!):Usuario
+    logout(email:String!,aut:Int!contrasena:String!,token:ID!):Usuario
+    addEntrada(autor:String!,aut:Int!,token:ID!,titulo:String!,descripcion:String!):Entrada!
+    borrarEntrada(_id:ID!,autor:String!,aut:Int!,token:ID!):Entrada!
+    borrarUsuario(email:String!,aut:Int!,token:ID!):Usuario!
+}
+type Subscription{
+    subUsuario(autor:String!,aut:Int!,token:ID!):Entrada!
+}
+type Entrada{
+    _id:ID!
+    autor: Autor!
+    titulo: String!
+    descripcion: String!
+}
+type Usuario{
+    _id: ID!
+    email:String!
+    contrasena: String!
+    token: ID
+    entradas:[Entrada!]
+}
+type Autor{
+    _id:ID!
+    email:String!
+    contrasena:String!
+    entradas: [Entrada!]
+}
